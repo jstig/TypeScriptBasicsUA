@@ -103,7 +103,6 @@ console.log(couponMessage);
 //////////////////////////////
 // Primitive Types: String Type
 
-
 const pizzas: number = 2;
 
 function offerDiscount(orders: number): boolean {
@@ -116,7 +115,6 @@ if (offerDiscount(pizzas)) {
   console.log(`Order more than 3 pizzas for a discount!`);
 }
 
-
 //////////////////////////////
 // Primitive Types: Any Type
 
@@ -127,7 +125,7 @@ coupon = 23;
 
 coupon = '23';
 
-coupon = true;
+coupon = true; 
 */
 
 //////////////////////////////
