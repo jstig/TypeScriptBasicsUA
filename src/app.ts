@@ -125,7 +125,7 @@ coupon = 23;
 
 coupon = '23';
 
-coupon = true; 
+coupon = true;
 */
 
 //////////////////////////////
