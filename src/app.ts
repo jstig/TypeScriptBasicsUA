@@ -202,3 +202,65 @@ sumOrder = (x, y) => {
 
 // console.log(`Total Sum: ${sum}`);
 
+///////////////////////////////
+// Special Types: Functions and Optional Arguments
+
+/*
+let sumOrder: (price: number, quantity?: number) => number;
+
+sumOrder = (x, y) => {
+  if (y) {
+    return x * y;
+  } 
+  return x;
+}
+
+let sum = sumOrder(25, 67);
+
+console.log(`Order price: ${sum}`);
+*/
+
+///////////////////////////////
+// Special Types: Typed Functions and Default Parameters
+
+/*
+let sumOrder: (price: number, quantity?: number) => number;
+
+sumOrder = (x, y = 1) => x * y;
+
+let sum = sumOrder(25);
+
+console.log(`Order price: ${sum}`);
+*/
+
+/////////////////////////////
+// Special Types: Object Types
+
+//I think the benefit of adding types at this point before the object is created is because types can't be specified in the object instself. That is I can't write the type like `name: string: 'Plain old pepperoni'`
+
+/*
+let pizza: { name: string; price: number; getName(): string };
+
+pizza = {
+    name: 'Plain old pepperoni',
+    price: 20,
+    getName() {
+        return pizza.name;
+    }
+};
+
+console.log(pizza.getName());
+*/
+
+////////////////
+// Special Types: Array Types and Generics
+
+/*
+let sizes: string[];
+
+sizes = ['small', 'medium', 'large'];
+
+let toppings: string[];
+
+toppings = ['pepperoni', 'tomato', 'bacon'];
+*/
