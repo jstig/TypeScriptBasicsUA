@@ -104,7 +104,7 @@ console.log(couponMessage);
 
 //////////////////////////////
 // Primitive Types: String Type
-
+/*
 const pizzas: number = 2;
 
 function offerDiscount(orders: number): boolean {
@@ -116,6 +116,7 @@ if (offerDiscount(pizzas)) {
 } else {
   console.log(`Order more than 3 pizzas for a discount!`);
 }
+*/
 
 //////////////////////////////
 // Primitive Types: Any Type
@@ -131,7 +132,7 @@ coupon = true;
 */
 
 //////////////////////////////
-// Primitive Types: Implicit v. Explicit Types
+// Special Types: Implicit v. Explicit Types
 
 /*
 let implicitCoupon = 'pizza25';
@@ -143,3 +144,61 @@ function testFunction (parameter:string) {
 
 }
 */
+
+////////////////////////
+// Special Types: Null, Undefined, Strict Null checks
+
+/*
+let coupon | null = 'pizza25';
+
+function removeCoupon(): void {
+    coupon = null;
+}
+
+console.log(coupon);
+removeCoupon();
+console.log(coupon);
+*/
+
+/////////////////////////
+// Special Types: Union and Literal Types
+
+/*
+let pizzaSize: string = 'small';
+
+function selectSize(size: 'small' | 'medium' | 'large'): void {
+  pizzaSize = size;
+}
+
+selectSize('large');
+
+console.log(`Pizza Size: ${pizzaSize}`);
+*/
+
+////////////////////////
+// Special Types: Function Types
+
+/*function sumOrder(price: number, quantity: number): number {
+     return price * quantity;
+ }
+ */
+
+// Arrow function version of above
+// In this we declare a variable, make it a type Function complete with parameters, set the arrow to indicate that it returns a number.
+
+//let sumOrder: (price: number, quantity: number) => number;
+
+// Calling the function that was defined above. Using x and y as the parameters, which correspond to price and quantity, as well as their data types
+/*
+sumOrder = (x, y) => {
+    return x * y;
+};
+*/
+
+//This is an even more shortened version of the above
+// sumOrder = (x,y) => x * y;
+
+// const sum = sumOrder(25, 2);
+
+// console.log(`Total Sum: ${sum}`);
+
