@@ -264,3 +264,46 @@ let toppings: string[];
 
 toppings = ['pepperoni', 'tomato', 'bacon'];
 */
+
+//////////////////
+// Special Types: Tuple Types for Arrays
+
+/*
+let pizza: [string, number, boolean];
+
+pizza = ['Pepperoni', 20, true];
+*/
+
+////////////////////
+// Type Alisases and Assertions
+
+/*
+type Size = 'small' | 'medium' | 'large';
+
+type Callback = (size: Size) => void;
+
+let pizzaSize: Size = 'small';
+
+const selectSize: Callback = x => {
+    pizzaSize = x;
+};
+
+selectSize('medium');
+*/
+
+///////////////////////
+// Type Assertions
+
+/*
+type Pizza = { name: string; toppings: number };
+
+const pizza: Pizza = { name: 'Blazing Inferno', toppings: 5 };
+
+const serialized = JSON.stringify(pizza);
+
+function getNameFromJSON(obj: string) {
+    return (JSON.parse(obj) as Pizza).name;
+}
+
+getNameFromJSON(serialized);
+*/
