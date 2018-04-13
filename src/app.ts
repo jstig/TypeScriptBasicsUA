@@ -307,3 +307,179 @@ function getNameFromJSON(obj: string) {
 
 getNameFromJSON(serialized);
 */
+
+/////////////////////
+// Exploring Enums: Numeric Enums and Reverse Mapping
+
+/*
+enum Sizes {
+    Small,
+    Medium,
+    Large
+}
+
+enum Sizes {
+    ExtraLarge = 3
+}
+
+const selectedSize = 2;
+
+console.log('Kaiden wears a size: ' + Sizes[selectedSize]);
+*/
+
+/////////////////////
+// Exploring Enums: String Enums and Inlining Members
+
+/*
+const enum Sizes {
+  Small = 'small',
+  Medium = 'medium',
+  Large = 'large',
+}
+
+let selected: Sizes = Sizes.Small;
+
+function updateSize(size: Sizes): void {
+  selected = size;
+}
+
+updateSize(Sizes.Large);
+
+console.log(selected);
+*/
+
+/////////////////////////
+// Diving into Interfaces: Creating Interfaces
+/*
+interface Pizza  {
+    name: string;
+    sizes: string[];
+};
+
+
+let pizza: Pizza;
+
+function createPizza(name: string, sizes: string[]): Pizza  {
+    return {
+        name,
+        sizes,
+    };
+}
+
+pizza = createPizza('pepperoni', ['small', 'medium']);
+*/
+
+//////////////////////
+// Diving into Interfaces: Interfaces with Function Types
+
+/*
+interface Pizza {
+    name: string;
+    sizes: string[];
+    getAvailableSizes(): string[];
+}
+
+type getAvailableSizes = ()
+
+
+
+function createPizza(name: string, sizes: string[]): Pizza {
+    return {
+        name,
+        sizes,
+        getAvailableSizes() {
+            return this.sizes;
+        }
+    };
+}
+
+pizza = createPizza('Pepperoni', ['small', 'medium']);
+*/
+
+////////////////////
+// Diving into Interfaces: Extending Interfaces
+
+/* 
+interface Sizes {
+  sizes: string[];
+}
+
+interface Pizza extends Sizes {
+  name: string;
+  
+  getAvailableSizes(): string[];
+}
+
+
+function createPizza(name: string, sizes: string[]): Pizza {
+  return {
+      name,
+      sizes,
+      getAvailableSizes() {
+          return this.sizes;
+      }
+  };
+}
+
+pizza = createPizza('Pepperoni', ['small', 'medium']);
+*/
+
+///////////////////
+//Understanding Classes and Constructors
+
+//New Way
+/*class Pizza {
+  name: string;
+  toppings: string[] = [];
+
+  constructor(name: string) {
+    this.name = name;
+  }
+
+  addTopping(topping: string) {
+    this.toppings.push(topping);
+  }
+}
+*/
+
+// Old way
+/*
+function Pizza(name: string) {
+    this.name = name;
+    this.toppings = [];
+}
+
+Pizza.prototype.addTopping = function addTopping(topping: string) {
+    this.toppings.push(topping);
+};
+*/
+
+/*
+const pizza = new Pizza('Pepperoni');
+
+pizza.addTopping('pepperoni');
+
+console.log(pizza);
+*/
+
+///////////////////////////
+// Public and Private Members
+
+class Pizza {
+    name: string;
+    toppings: string[] = [];
+
+    constructor(name: string) {
+        this.name = name;
+    }
+
+    addTopping(topping: string) {
+        this.toppings.push(topping);
+    }
+}
+
+const pizza = new Pizza('Pepperoni');
+
+pizza.addTopping('beef');
+
+console.log(pizza);
