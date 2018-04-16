@@ -119,10 +119,10 @@ if (offerDiscount(pizzas)) {
 */
 
 //////////////////////////////
-// Primitive Types: Any Type
+// Primitive Types: T Type
 
 /*
-let coupon: any; // no value assigned. value can be 'any' type
+let coupon: T; // no value assigned. value can be 'T' type
 
 coupon = 23;
 
@@ -464,14 +464,78 @@ console.log(pizza);
 
 ///////////////////////////
 // Public and Private Members
-
+/*
 class Pizza {
-    name: string;
     toppings: string[] = [];
 
-    constructor(name: string) {
-        this.name = name;
+    constructor(private name: string) {}
+
+    addTopping(topping: string) {
+        this.toppings.push(topping);
     }
+}
+
+const pizza = new Pizza('Pepperoni');
+
+
+pizza.addTopping('beef');
+
+console.log(pizza);
+*/
+
+//////////////////////
+// Read Only Members
+
+/* 
+class Pizza {
+  toppings: string[] = [];
+
+  constructor(readonly name: string) {}
+
+  addTopping(topping: string) {
+      this.toppings.push(topping);
+  }
+}
+
+const pizza = new Pizza('Pepperoni');
+
+
+pizza.addTopping('beef');
+
+console.log(pizza.name);
+
+console.log(pizza);
+*/
+
+///////////////////
+// Setters and Getters
+
+/*
+class Sizes {
+    constructor(public sizes: string[]) {}
+
+    set availableSizes(sizes: string[]) {
+        this.sizes = sizes;
+    }
+
+    get availableSizes() {
+        return this.sizes;
+    }
+}
+
+//create new instance of the class
+const sizes = new Sizes(['small', 'medium']);
+
+//invoke getter
+console.log(`Getting the sizes: ${sizes.availableSizes}`);
+//invoke setter
+sizes.availableSizes = ['medium', 'large'];
+console.log(`Setting new sizes: ${sizes.availableSizes}`);
+
+class Pizza {
+    toppings: string[] = [];
+
+    constructor(readonly name: string) {}
 
     addTopping(topping: string) {
         this.toppings.push(topping);
@@ -482,4 +546,132 @@ const pizza = new Pizza('Pepperoni');
 
 pizza.addTopping('beef');
 
+console.log(pizza.name);
+
 console.log(pizza);
+*/
+
+/////////////////////////
+//Class Inheritance, Abstract Classes, Protected Members, Interface Contracts
+/*
+interface SizesInterface {
+  availableSizes: string[];
+}
+
+abstract class Sizes implements SizesInterface {
+    constructor(protected sizes: string[]) {}
+
+    set availableSizes(sizes: string[]) {
+        this.sizes = sizes;
+    }
+
+    get availableSizes() {
+        return this.sizes;
+    }
+}
+
+interface PizzaInterface extends SizesInterface {
+  readonly name: string;
+  toppings: string[];
+  updateSizes(sizes: string[]): void;
+  addTopping(topping: string): void;
+}
+
+class Pizza extends Sizes  implements PizzaInterface {
+    toppings: string[] = [];
+
+    constructor(readonly name: string, sizes: string[]) {
+        //A super call is necessary to extend a class
+        super(sizes);
+    }
+
+    public updateSizes(sizes: string[]) {
+        this.sizes = sizes;
+    }
+
+    addTopping(topping: string) {
+        this.toppings.push(topping);
+    }
+}
+
+//The arguments 'small' and 'medium' are possible because Pizza extends Sizes
+const pizza = new Pizza('Pepperoni', ['small', 'medium']);
+console.log(pizza.availableSizes);
+pizza.updateSizes('large');
+console.log(pizza.availableSizes);
+*/
+
+///////////////////////////
+// Static Properties and Methods
+
+/*
+class Coupon {
+    static allowed = ['Pepperoni', 'Blazing Inferno'];
+    static create(percentage: number) {
+        return `PIZZA_RESTAURANT${percentage}`;
+    }
+}
+
+console.log(Coupon.create(25));
+*/
+
+/////////////////////////
+//Generics and Overloads: Function Generics
+/*
+class Pizza {
+    constructor(private name: string, private price: number) {}
+}
+
+class List<T> {
+    private list: T[];
+
+    addItem(item: T): void {
+        this.list.push(item);
+    }
+
+    getList(): T[] {
+        return this.list;
+    }
+}
+
+const list = new List<Pizza>();
+
+list.addItem(new Pizza('Pepperoni', 15));
+
+const pizzas = list.getList();
+
+class Coupon {
+    constructor(private name: string) {}
+}
+
+const anotherList = new List<Coupon>();
+
+anotherList.addItem(new Coupon('PIZZA25'));
+*/
+
+////////////////////////////
+// Function Overload
+
+//Example will reverses an array or a string. Not very practical, but
+
+//creating overloads. arguments that can be passed in, as well as the return type. Don't compile out to JS
+function reverse(str: string): string;
+function reverse<T>(arr: T[]): T[];
+
+//this is the primary array that will be overloaded
+function reverse<T>(stringOrArray: string | T[]): string | T[] {
+    if (typeof stringOrArray === 'string') {
+        //if it is a string, we split it into an array, reverse it, then join it again
+        return stringOrArray
+            .split('')
+            .reverse()
+            .join('');
+    }
+    //if it's an array, we can simply call the reverse() method. Adding a slice() so that a copy is made, returns a new one, and then reversed. The direct array is not mutated.
+    return stringOrArray.slice().reverse();
+}
+
+reverse('Pepperoni');
+reverse(['bacon', 'pepperoni', 'chili', 'mushrooms']);
+
+console.log(reverse);
